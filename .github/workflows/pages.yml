@@ -24,6 +24,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Inject view selector
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          css = '<link rel="stylesheet" href="view-selector.css">'
+          js = '<script src="view-selector.js" defer></script>'
+          if 'view-selector.css' not in s:
+              s = s.replace('</head>', css + '</head>')
+          if 'view-selector.js' not in s:
+              s = s.replace('</body>', js + '</body>')
+          p.write_text(s, encoding='utf-8')
+          PY
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
