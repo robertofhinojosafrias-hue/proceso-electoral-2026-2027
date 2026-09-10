@@ -24,19 +24,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Inject view selector
+      - name: Inject view selector and pagination
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          css = '<link rel="stylesheet" href="view-selector.css">'
-          js = '<script src="view-selector.js" defer></script>'
-          if 'view-selector.css' not in s:
-              s = s.replace('</head>', css + '</head>')
-          if 'view-selector.js' not in s:
-              s = s.replace('</body>', js + '</body>')
+          assets = [
+              ('</head>', '<link rel="stylesheet" href="view-selector.css">', 'view-selector.css'),
+              ('</head>', '<link rel="stylesheet" href="pagination.css">', 'pagination.css'),
+              ('</body>', '<script src="view-selector.js" defer></script>', 'view-selector.js'),
+              ('</body>', '<script src="pagination.js" defer></script>', 'pagination.js'),
+          ]
+          for marker, tag, needle in assets:
+              if needle not in s:
+                  s = s.replace(marker, tag + marker)
           p.write_text(s, encoding='utf-8')
           PY
 
