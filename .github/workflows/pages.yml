@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Inject view selector and pagination
+      - name: Inject persistent UI modules
         shell: bash
         run: |
           python - <<'PY'
@@ -34,8 +34,10 @@ jobs:
           assets = [
               ('</head>', '<link rel="stylesheet" href="view-selector.css">', 'view-selector.css'),
               ('</head>', '<link rel="stylesheet" href="pagination.css">', 'pagination.css'),
+              ('</head>', '<link rel="stylesheet" href="sources-footer.css">', 'sources-footer.css'),
               ('</body>', '<script src="view-selector.js" defer></script>', 'view-selector.js'),
               ('</body>', '<script src="pagination.js" defer></script>', 'pagination.js'),
+              ('</body>', '<script src="sources-footer.js" defer></script>', 'sources-footer.js'),
           ]
           for marker, tag, needle in assets:
               if needle not in s:
