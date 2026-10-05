@@ -1,6 +1,8 @@
 (()=> {
   const groups = [
     {name:'Normativa', docs:[
+      'IECM-ACU-CG-073-2026.pdf',
+      'IECM-ACU-CG-073-2026_Convocatoria.pdf',
       'IECM-ACU-CG-065-2026.pdf',
       'IECM-ACU-CG-065-2026_ANEXO.pdf',
       'Lineamientos.pdf',
@@ -57,9 +59,8 @@
       <div class="sources-body">
         <p class="sources-intro">
           Inventario consolidado del acervo documental vigente del proyecto con corte al
-          <span class="source-cut">01/10/2026</span>. El listado se verificó directamente contra
-          las cinco carpetas temáticas de Google Drive. Los documentos incorporados el 1 de octubre
-          —IECM-ACU-CG-065-2026, su Anexo e IECM-ACU-CG-066-2026— ya forman parte del acervo consolidado.
+          <span class="source-cut">05/10/2026</span>. El listado se verificó directamente contra
+          las cinco carpetas temáticas de Google Drive. Los documentos incorporados al corte vigente —incluidos IECM-ACU-CG-065-2026, su Anexo, IECM-ACU-CG-066-2026, IECM-ACU-CG-073-2026 y su Convocatoria— ya forman parte del acervo consolidado.
           Las cinco subcarpetas “Para actualizar” fueron revisadas y se encuentran sin documentos pendientes.
         </p>
         <div class="source-grid">
@@ -67,13 +68,13 @@
             <section class="source-group">
               <h3>${g.name} · ${g.docs.length} documento${g.docs.length===1?'':'s'}</h3>
               <ul>${g.docs.map(d=>`<li>${d}</li>`).join('')}</ul>
-              <div class="source-empty">Para actualizar: vacía al corte del 01/10/2026</div>
+              <div class="source-empty">Para actualizar: vacía al corte del 05/10/2026</div>
             </section>
           `).join('')}
         </div>
         <div class="source-total">
           <strong>Total inventariado y verificado: ${total} documentos fuente.</strong>
-          Distribución: Normativa 18 · Organización Electoral 3 · Cómputos 2 ·
+          Distribución: Normativa 20 · Organización Electoral 3 · Cómputos 2 ·
           Asociaciones Políticas y Candidaturas 5 · Financiamiento y Fiscalización 2.
           Este inventario, sus contadores y la relación de fuentes deberán sincronizarse
           cada vez que cambie el acervo del proyecto.
